@@ -6,4 +6,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Command\Base\" />
+    <Folder Include="Model\Base\" />
+    <Folder Include="Resources\Style\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModel\Base\" />
+  </ItemGroup>
+
 </Project>
