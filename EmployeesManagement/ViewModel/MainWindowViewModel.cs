@@ -1,6 +1,7 @@
 ﻿using EmployeesManagement.Command;
 using EmployeesManagement.Model;
 using EmployeesManagement.Services;
+using EmployeesManagement.Services.Interfaces;
 using EmployeesManagement.ViewModel.Base;
 using System.Windows.Input;
 
@@ -9,7 +10,8 @@ namespace EmployeesManagement.ViewModel
     internal class MainWindowViewModel: BaseViewModel
     {
         #region Поля
-        private readonly EmployeesManager _EmployeesManagement;
+        private readonly EmployeesManager _EmployeesManager;
+        private readonly IUserDialogService _UserDialog;
 
         #endregion
 
@@ -63,7 +65,15 @@ namespace EmployeesManagement.ViewModel
         private bool CanCreateDepartamentCommandExecute(object p) => true;
         private void OnCreateDepartamentCommandExecuted(object p)
         {
-
+            var departament = new Departament();
+            if(_UserDialog.Create(departament))
+            {
+                _EmployeesManager.Add(departament);
+                _UserDialog.ShowInfo("Подразделение успешно создано", "Добавление подразделения");
+                return;
+            }
+            if (_UserDialog.Confirm("Не удалось создать подразделение. \n Повторить?", "Добавление подразделения"))
+                OnCreateDepartamentCommandExecuted(p);
         }
         #endregion
 
@@ -79,9 +89,10 @@ namespace EmployeesManagement.ViewModel
 
         #endregion
 
-        public MainWindowViewModel(EmployeesManager EmployeesManager)
+        public MainWindowViewModel(EmployeesManager EmployeesManager, IUserDialogService UserDialogService)
         {
-            _EmployeesManagement = EmployeesManager;
+            _EmployeesManager = EmployeesManager;
+            _UserDialog = UserDialogService;
         }
     }
 }

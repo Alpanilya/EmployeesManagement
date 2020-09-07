@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <DockPanel>
             <UniformGrid DockPanel.Dock="Bottom" Rows="1">
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding CreateDepartamentCommand}">
                     <Button.Content>
                         <fa:FontAwesome Icon="Solid_Plus" Foreground="LimeGreen"/>
                     </Button.Content>
@@ -39,12 +39,12 @@
                         <fa:FontAwesome Icon="Solid_UserPlus" Foreground="LimeGreen"/>
                     </Button.Content>
                 </Button>
-                <Button Margin="10,0" BorderThickness="0">
+                <Button Style="{StaticResource MenuButtonStyle}">
                     <Button.Content>
-                        <fa:FontAwesome Icon="Solid_UserEdit"/>
+                        <fa:FontAwesome Icon="Solid_UserEdit" Foreground="LightBlue"/>
                     </Button.Content>
                 </Button>
-                <Button Margin="10,0" BorderThickness="0">
+                <Button Style="{StaticResource MenuButtonStyle}">
                     <Button.Content>
                         <fa:FontAwesome Icon="Regular_TrashAlt" Foreground="Red"/>
                     </Button.Content>

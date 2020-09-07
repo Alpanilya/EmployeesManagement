@@ -5,5 +5,7 @@
     <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Margin" Value="10,0"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0,4"/>
+        <Setter Property="Background" Value="#26272C"/>
     </Style>
 </ResourceDictionary>

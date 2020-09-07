@@ -9,6 +9,11 @@ namespace EmployeesManagement.Services
     {
         public DbSet<Departament> Departaments { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public EmployeesDbContext()
+        {
+            Database.EnsureCreated();
+         
+        }
         public EmployeesDbContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

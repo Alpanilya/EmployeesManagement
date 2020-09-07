@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EmployeesManagement.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 namespace EmployeesManagement.Services
 {
     internal static class Registrator
@@ -8,6 +9,7 @@ namespace EmployeesManagement.Services
             services.AddSingleton<EmployeesDbContext>();
             services.AddSingleton<EmployeesManager>();
 
+            services.AddTransient<IUserDialogService, WindowUserDialogService>();
             return services;
         }
     }
