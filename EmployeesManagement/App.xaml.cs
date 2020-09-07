@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using EmployeesManagement.ViewModel;
+using EmployeesManagement.Services;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
@@ -31,7 +32,9 @@ namespace EmployeesManagement
         }
 
         public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
+            .RegisterServices()
             .RegistratorViewModels();
+       
         public static string CurrentDirectory => IsDesignMode
             ? Path.GetDirectoryName(GetSourceCodePath())
             : Environment.CurrentDirectory;
