@@ -9,12 +9,12 @@
 
   <ItemGroup>
     <Folder Include="Command\Base\" />
-    <Folder Include="Model\Base\" />
-    <Folder Include="Resources\Style\" />
+    <Folder Include="Model\Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FontAwesome5" Version="2.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
