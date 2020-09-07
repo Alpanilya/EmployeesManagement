@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace EmployeesManagement.ViewModel.Base
 {
-    internal class BaseViewModel : INotifyPropertyChanged
+    internal abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)

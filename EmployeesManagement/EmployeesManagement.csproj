@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Command\Base\" />
     <Folder Include="Model\Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
