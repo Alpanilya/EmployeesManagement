@@ -11,6 +11,7 @@
 
                 <ResourceDictionary Source="Resources/Style/MenuButtonStyle.xaml"/>
                 <ResourceDictionary Source="Resources/Style/TextBlockStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Style/ListBoxItemStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
             <vm:ViewModelLocator x:Key="Locator"/>

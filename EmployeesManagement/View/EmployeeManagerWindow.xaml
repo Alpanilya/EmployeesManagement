@@ -10,7 +10,7 @@
         DataContext="{Binding RelativeSource= {RelativeSource Self}}"
         Background="#1A1B1C"
         Title="Employee Manager"
-        Height="125"
+        Height="150"
         Width="350"
         ResizeMode="NoResize">
     <DockPanel>

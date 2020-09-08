@@ -5,9 +5,9 @@ namespace EmployeesManagement.Services.Base
 {
     internal class Repository<T> : IRepository<T> where T : IEntity
     {
-        private readonly EmployeesDbContext _Context;
+        private readonly EmployeedDbContextFactory _Context;
         protected Repository() { }
-        public Repository(EmployeesDbContext Context)
+        public Repository(EmployeedDbContextFactory Context)
         {
             if (Context is null) return;
             _Context = Context;

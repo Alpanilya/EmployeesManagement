@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace EmployeesManagement.ViewModel.Base
@@ -15,6 +16,7 @@ namespace EmployeesManagement.ViewModel.Base
             if (Equals(field, value)) return false;
             field = value;
             OnPropertyChanged(PropertyName);
+            ObservableCollection<int> a = new ObservableCollection<int>();
             return true;
         }
     }

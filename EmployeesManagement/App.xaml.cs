@@ -6,6 +6,8 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeesManagement
 {
@@ -31,10 +33,16 @@ namespace EmployeesManagement
             base.OnExit(e);
         }
 
-        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
-            .RegisterServices()
-            .RegistratorViewModels();
-       
+        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
+        {
+            string connectionString = host.Configuration.GetConnectionString("default");
+            services
+              .RegisterServices()
+              .RegistratorViewModels()
+              .AddDbContext<EmployeesDbContext>(o => o.UseNpgsql(connectionString))
+              .AddSingleton<EmployeedDbContextFactory>(new EmployeedDbContextFactory(connectionString));
+           
+        }
         public static string CurrentDirectory => IsDesignMode
             ? Path.GetDirectoryName(GetSourceCodePath())
             : Environment.CurrentDirectory;

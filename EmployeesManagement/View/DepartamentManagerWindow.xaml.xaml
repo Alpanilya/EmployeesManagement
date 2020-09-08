@@ -24,7 +24,7 @@
                 </Button.Command>
             </Button>
             <Button Style="{StaticResource MenuButtonStyle}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType= local:DepartamentManagerWindow}}">>
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType= local:DepartamentManagerWindow}}">
                 <Button.Content>
                     <fa:FontAwesome Icon="Solid_Times" Foreground="Red"/>
                 </Button.Content>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeesManagement"
+        xmlns:m ="clr-namespace:EmployeesManagement.Model"
         xmlns:fa ="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         Title="{Binding Title}"
@@ -18,39 +19,70 @@
         </Grid.ColumnDefinitions>
         <DockPanel>
             <UniformGrid DockPanel.Dock="Bottom" Rows="1">
-                <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding CreateDepartamentCommand}">
+                <Button Style="{StaticResource MenuButtonStyle}" 
+                        Command="{Binding CreateDepartamentCommand}">
                     <Button.Content>
                         <fa:FontAwesome Icon="Solid_Plus" Foreground="LimeGreen"/>
                     </Button.Content>
                 </Button>
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuButtonStyle}"
+                        Foreground="Red"
+                        Command="{Binding RemoveDepartamentCommand}"
+                        CommandParameter="{Binding SelectedDepartament}">
                     <Button.Content>
-                        <fa:FontAwesome Icon="Regular_TrashAlt" Foreground="Red"/>
+                        <fa:FontAwesome Icon="Regular_TrashAlt"/>
                     </Button.Content>
                 </Button>
             </UniformGrid>
-            <ListBox Background="Transparent" BorderThickness="0">
-            </ListBox>
+            
+            <ListBox x:Name="SelectorDepartament" ItemsSource="{Binding Departaments, Mode=TwoWay}"
+                     ItemContainerStyle="{StaticResource ListBoxTaskItemStyle}"
+                     SelectedItem="{Binding SelectedDepartament}"
+                     SelectedValue="{Binding SelectedDepartament.Employees}"
+                     SelectedValuePath="Employees"
+                     SelectedIndex="0"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     HorizontalContentAlignment="Stretch"
+                     DisplayMemberPath="Name"/>
+
         </DockPanel>
         <DockPanel Grid.Column="1">
             <UniformGrid DockPanel.Dock="Bottom" Rows="1">
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding CreateEmployeeCommand}"
+                        CommandParameter="{Binding SelectedDepartament}">
                     <Button.Content>
                         <fa:FontAwesome Icon="Solid_UserPlus" Foreground="LimeGreen"/>
                     </Button.Content>
                 </Button>
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding EditEmployeeCommand}"
+                        CommandParameter="{Binding SelectedEmployee}">
                     <Button.Content>
                         <fa:FontAwesome Icon="Solid_UserEdit" Foreground="LightBlue"/>
                     </Button.Content>
                 </Button>
-                <Button Style="{StaticResource MenuButtonStyle}">
+                <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding RemoveEmployeeCommand}"
+                        CommandParameter="{Binding SelectedEmployee}">
                     <Button.Content>
                         <fa:FontAwesome Icon="Regular_TrashAlt" Foreground="Red"/>
                     </Button.Content>
                 </Button>
             </UniformGrid>
-            <ListBox Background="Transparent" BorderThickness="0"/>
+
+            <ListBox ItemsSource="{Binding SelectedValue, ElementName=SelectorDepartament, Mode=TwoWay}"
+                     SelectedItem="{Binding SelectedEmployee}"
+                     ItemContainerStyle="{StaticResource ListBoxTaskItemStyle}"
+                     Background="Transparent" BorderThickness="0"
+                     HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock Text="{Binding FirstName}"/>
+                            <TextBlock Text="{Binding LastName}"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </DockPanel>
         <Grid Grid.Column="3">
             <Grid.ColumnDefinitions>
@@ -70,10 +102,10 @@
             <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource TextBlockStyle}" Text="Возраст:"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource TextBlockStyle}" Text="Должность:"/>
 
-            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBlockStyle}" Text="Фамилия:"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBlockStyle}" Text="Имя:"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBlockStyle}" Text="Возраст:"/>
-            <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBlockStyle}" Text="Должность:"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBlockStyle}" Text="{Binding SelectedEmployee.LastName}"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBlockStyle}" Text="{Binding SelectedEmployee.FirstName}"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBlockStyle}" Text="{Binding SelectedEmployee.Age}"/>
+            <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBlockStyle}" Text="{Binding SelectedEmployee.Position}"/>
         </Grid>
 
         <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="2"/>
